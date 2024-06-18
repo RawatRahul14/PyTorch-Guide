@@ -5,6 +5,7 @@ Welcome to the PyTorch Guide! This repository contains tutorials on how to imple
 #### Table of content
 * [Introduction](#introduction)
 * [Applications](#applications)
+* [Installtion](#installation)
 
 ## Introduction:
 PyTorch is an open-source Deep Learning framework developed by the Facebook's AI Research lab (FAIR). It is widely used in the applications such as Computer Vision (CV) and Natural Language Processing (NLP). 
@@ -31,3 +32,13 @@ PyTorch is an open-source Deep Learning framework developed by the Facebook's AI
     * Forecasting: Pytorch can be used to make models to predict future values of the time-series data, such as Stock Price, Weather.
 6. **Autonomous Systems**
     * Self-driving cars: PyTorch is used to develop decision making systems for self driving cars which helps them to navigate through their environment safely.
+
+## Installation
+
+1. Ensure you are using Python verion 3.6 or higher.
+2. Install PyTorch using pip command.
+    ```sh
+    pip install torch torchvision
+    ```
+3. Verify the installation
+    `import torch; print(torch.__version__)`
