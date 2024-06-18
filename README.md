@@ -13,6 +13,7 @@ Welcome to the PyTorch Guide! This repository contains tutorials on how to imple
     * Autonomous Systems
 * [Installtion](#installation)
 * [Tensors](#tensors)
+* [Neural Networks](#neural-networks)
 
 ## Introduction:
 PyTorch is an open-source Deep Learning framework developed by the Facebook's AI Research lab (FAIR). It is widely used in the applications such as Computer Vision (CV) and Natural Language Processing (NLP). 
@@ -46,12 +47,16 @@ Some key applications of PyTorch:
 ## Installation
 
 1. Ensure you are using Python verion 3.6 or higher.
+
+
 2. Install PyTorch using pip command.
     ```sh
     pip install torch torchvision
     ```
+
+
 3. Verify the installation
-    ```sh
+    ```py
     import torch
     print(torch.__version__)
     ```
@@ -62,3 +67,34 @@ Tensors are the fundamental data structures used in PyTorch to store, manipulate
 They can be thought as multidimensional arrays. In mathematics, they known as matrices.
 
 * [Manipulating Tensors](01-Tensors.ipynb)
+
+## Neural Networks
+
+Neural Networks are the fundamental part of the Deep Learning, it allows the model to learn complex patterns in data. PyTorch provides a flexible framework for building and training neural networks.
+
+1. **Importing the required packages.**
+```py
+import torch
+import torch.nn
+import torch.optim as optim
+```
+2. **Defining a Simple Neural Network:**
+
+    A PyTorch neural network model is made by creating a class which inherits from `nn.Module`. The layers are defined in the `__init__` method and the feed forward is defined in the `forward` method.
+```py
+class SimpleNN(nn.Module):
+    def __init__(self):
+        super(SimpleNN, self).__init__()
+        # fc1: 1st fully connected layer
+        # fc2: 2nd fullu connected layer
+        self.fc1 = nn.Linear(10, 50) # Input Layer: 10 nodes, Hidden Layer: 50 nodes
+        self.fc2 = nn.Linear(50, 1) # Output Layer: 1 node
+    def forward(self, x):
+        # Applying the 1st layer
+        x = self.fc1(x)
+        # Applying the activation function
+        x = torch.relu(x)
+        # Applying the 2nd layer
+        x = self.fc2(x)
+        return x
+```
