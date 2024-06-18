@@ -73,28 +73,66 @@ They can be thought as multidimensional arrays. In mathematics, they known as ma
 Neural Networks are the fundamental part of the Deep Learning, it allows the model to learn complex patterns in data. PyTorch provides a flexible framework for building and training neural networks.
 
 1. **Importing the required packages.**
-```py
-import torch
-import torch.nn
-import torch.optim as optim
-```
+    ```py
+    import torch
+    import torch.nn
+    import torch.optim as optim
+    ```
 2. **Defining a Simple Neural Network:**
 
     A PyTorch neural network model is made by creating a class which inherits from `nn.Module`. The layers are defined in the `__init__` method and the feed forward is defined in the `forward` method.
+    ```py
+    class SimpleNN(nn.Module):
+        def __init__(self):
+            super(SimpleNN, self).__init__()
+            # fc1: 1st fully connected layer
+            # fc2: 2nd fullu connected layer
+            self.fc1 = nn.Linear(10, 50) # Input Layer: 10 nodes, Hidden Layer: 50 nodes
+            self.fc2 = nn.Linear(50, 1) # Output Layer: 1 node
+        def forward(self, x):
+            # Applying the 1st layer
+            x = self.fc1(x)
+            # Applying the activation function
+            x = torch.relu(x)
+            # Applying the 2nd layer
+            x = self.fc2(x)
+            return x
+    ```
+
+3. **Creating a model Instance**
+
+    Initiate the model and define the loss function.
+    ```py
+    # Initializing the model
+    model = SimpleNN()
+    # Mean Squarred Error loss
+    criterion = model.MSEloss() 
+    # SGD optimizer with the 0.01 learning rate
+    optimizer = optim.SGD(model.parameters(), lr = 0.01)
+    ```
+
+4. **Training the model**
 ```py
-class SimpleNN(nn.Module):
-    def __init__(self):
-        super(SimpleNN, self).__init__()
-        # fc1: 1st fully connected layer
-        # fc2: 2nd fullu connected layer
-        self.fc1 = nn.Linear(10, 50) # Input Layer: 10 nodes, Hidden Layer: 50 nodes
-        self.fc2 = nn.Linear(50, 1) # Output Layer: 1 node
-    def forward(self, x):
-        # Applying the 1st layer
-        x = self.fc1(x)
-        # Applying the activation function
-        x = torch.relu(x)
-        # Applying the 2nd layer
-        x = self.fc2(x)
-        return x
+# Creating a tensor with random values of dimension (100 X 10)
+inputs = torch.randn(100, 10)
+# Creating a tensor for the target values
+targets = torch.randn(100, 1)
+
+# Training loop
+num_epochs = 1000
+
+for epoch in num_epochs:
+    # Feed Foward
+    outputs = model(inputs)
+
+    # Loss function
+    loss = criterion(outputs, targets)
+
+    # Back Propagation
+    optimizer.zero_grad() # Clear the gradients
+    loss.backward()       # Compute the gradients
+    optimizer.step()      # Update the parameters
+
+    if (epoch + 1) % 100 == 0:
+        print(f"Epoch: [{epoch + 1}/{num_epochs}], Loss: {loss.item():.4f}")  
 ```
