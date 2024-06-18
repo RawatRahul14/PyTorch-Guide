@@ -5,6 +5,12 @@ Welcome to the PyTorch Guide! This repository contains tutorials on how to imple
 #### Table of content
 * [Introduction](#introduction)
 * [Applications](#applications)
+    * Computer Vision
+    * Natural Language Processing
+    * Reinforcement Learning
+    * Recommendation System
+    * Time Series Analysis
+    * Autonomous Systems
 * [Installtion](#installation)
 * [Tensors](#tensors)
 
@@ -14,6 +20,9 @@ PyTorch is an open-source Deep Learning framework developed by the Facebook's AI
 * **AutoGrad :** Automatic differentiation for creating and training Deep Neural Networks.
 
 ## Applications:
+PyTorch is used in various domains due to its flexibility, ease of use, and powerful features. 
+
+Some key applications of PyTorch:
 1. **Computer Vision (CV)**
     * Image Classification: It is used to make models for classifying images into different categories.
     * Object Detection: YOLO algorithm uses Convolutional Layers (or CNN) to detect objects in an image and is implemented on PyTorch.
@@ -52,4 +61,4 @@ Tensors are the fundamental data structures used in PyTorch to store, manipulate
 
 They can be thought as multidimensional arrays. In mathematics, they known as matrices.
 
-* [Creating Tensors](01-Tensors.ipynb)
+* [Manipulating Tensors](01-Tensors.ipynb)
