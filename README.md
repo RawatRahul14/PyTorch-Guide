@@ -52,4 +52,4 @@ Tensors are the fundamental data structures used in PyTorch to store, manipulate
 
 They can be thought as multidimensional arrays. In mathematics, they known as matrices.
 
-* [Creating Tensors](notebooks/01-Tensors.ipynb)
+* [Creating Tensors](01-Tensors.ipynb)
