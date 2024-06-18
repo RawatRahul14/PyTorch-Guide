@@ -75,7 +75,7 @@ Neural Networks are the fundamental part of the Deep Learning, it allows the mod
 1. **Importing the required packages.**
     ```py
     import torch
-    import torch.nn
+    import torch.nn as nn
     import torch.optim as optim
     ```
 2. **Defining a Simple Neural Network:**
@@ -106,33 +106,29 @@ Neural Networks are the fundamental part of the Deep Learning, it allows the mod
     # Initializing the model
     model = SimpleNN()
     # Mean Squarred Error loss
-    criterion = model.MSEloss() 
+    criterion = nn.MSELoss() 
     # SGD optimizer with the 0.01 learning rate
     optimizer = optim.SGD(model.parameters(), lr = 0.01)
     ```
 
 4. **Training the model**
     ```py
-    # Creating a tensor with random values of dimension (100 X 10)
-    inputs = torch.randn(100, 10)
-    # Creating a tensor for the target values
-    targets = torch.randn(100, 1)
+    # Example data
+    inputs = torch.randn(100, 10)  # 100 samples, each with 10 features
+    targets = torch.randn(100, 1)  # 100 target values
 
     # Training loop
     num_epochs = 1000
-
-    for epoch in num_epochs:
-        # Feed Foward
+    for epoch in range(num_epochs):
+        # Forward pass
         outputs = model(inputs)
-
-        # Loss function
         loss = criterion(outputs, targets)
 
-        # Back Propagation
-        optimizer.zero_grad() # Clear the gradients
-        loss.backward()       # Compute the gradients
-        optimizer.step()      # Update the parameters
+        # Backward pass and optimization
+        optimizer.zero_grad()  # Clear the gradients
+        loss.backward()        # Compute the gradients
+        optimizer.step()       # Update the parameters
 
-        if (epoch + 1) % 100 == 0:
-            print(f"Epoch: [{epoch + 1}/{num_epochs}], Loss: {loss.item():.4f}")  
+        if (epoch+1) % 100 == 0:
+            print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}') 
     ```
