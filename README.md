@@ -134,3 +134,15 @@ Neural Networks are the fundamental part of the Deep Learning, it allows the mod
         if (epoch+1) % 100 == 0:
             print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}') 
     ```
+
+5. **Evaluation**
+```py
+# Creating a tensor for new predictions
+test_inputs = torch.randn(10, 10)
+
+# Testing the model on new test data
+test_pred = model(test_inputs)
+
+# Printing the predictions
+print(test_pred)
+```
