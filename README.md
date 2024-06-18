@@ -72,6 +72,8 @@ They can be thought as multidimensional arrays. In mathematics, they known as ma
 
 Neural Networks are the fundamental part of the Deep Learning, it allows the model to learn complex patterns in data. PyTorch provides a flexible framework for building and training neural networks.
 
+[Python Notebook for the below code](#02-Simple-NN.ipynb)
+
 1. **Importing the required packages.**
     ```py
     import torch
