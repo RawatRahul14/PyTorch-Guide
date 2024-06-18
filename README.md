@@ -6,6 +6,7 @@ Welcome to the PyTorch Guide! This repository contains tutorials on how to imple
 * [Introduction](#introduction)
 * [Applications](#applications)
 * [Installtion](#installation)
+* [Tensors](#tensors)
 
 ## Introduction:
 PyTorch is an open-source Deep Learning framework developed by the Facebook's AI Research lab (FAIR). It is widely used in the applications such as Computer Vision (CV) and Natural Language Processing (NLP). 
@@ -45,3 +46,10 @@ PyTorch is an open-source Deep Learning framework developed by the Facebook's AI
     import torch
     print(torch.__version__)
     ```
+
+## Tensors
+Tensors are the fundamental data structures used in PyTorch to store, manipulate and do computation, They are similar to NumPy arrays but can utilize GPU acceleration for faster computations.
+
+They can be thought as multidimensional arrays. In mathematics, they known as matrices.
+
+* [Creating Tensors](notebooks/01-Tensors.ipynb)
