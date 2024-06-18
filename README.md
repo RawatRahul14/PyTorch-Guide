@@ -42,5 +42,6 @@ PyTorch is an open-source Deep Learning framework developed by the Facebook's AI
     ```
 3. Verify the installation
     ```sh
-    import torch; print(torch.__version__)
+    import torch
+    print(torch.__version__)
     ```
