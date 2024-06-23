@@ -14,6 +14,13 @@ Welcome to the PyTorch Guide! This repository contains tutorials on how to imple
 * [Installtion](#installation)
 * [Tensors](#tensors)
 * [Neural Networks](#neural-networks)
+    * Packages
+    * Defining the model
+    * Creating the model
+    * Training the model
+    * Evaluating the model
+* [CNN and RNN Using PyTorch](#cnn-and-rnn-using-pytorch)
+    * [Implementing a CNN model](#implementing-a-convolutional-neural-network)
 
 ## Introduction:
 PyTorch is an open-source Deep Learning framework developed by the Facebook's AI Research lab (FAIR). It is widely used in the applications such as Computer Vision (CV) and Natural Language Processing (NLP). 
@@ -114,6 +121,8 @@ Neural Networks are the fundamental part of the Deep Learning, it allows the mod
     ```
 
 4. **Training the model**
+
+    Training the model created above on the training dataset using a `for` loop.
     ```py
     # Example data
     inputs = torch.randn(100, 10)  # 100 samples, each with 10 features
@@ -136,13 +145,76 @@ Neural Networks are the fundamental part of the Deep Learning, it allows the mod
     ```
 
 5. **Evaluation**
-```py
-# Creating a tensor for new predictions
-test_inputs = torch.randn(10, 10)
+    Evaluating the model using test dataset.
+    ```py
+    # Creating a tensor for new predictions
+    test_inputs = torch.randn(10, 10)
 
-# Testing the model on new test data
-test_pred = model(test_inputs)
+    # Testing the model on new test data
+    test_pred = model(test_inputs)
 
-# Printing the predictions
-print(test_pred)
-```
+    # Printing the predictions
+    print(test_pred)
+    ```
+
+## CNN and RNN Using PyTorch
+
+### Implementing a Convolutional Neural Network
+
+The model has been trained on mnist dataset, which is a large database of handwritten digits.
+1. **Importing the packages required for the project**
+    ```py
+    # Importing all the required packages
+    import torch
+    import torch.nn as nn
+    from torch.autograd import Variable
+    import torch.utils.data as Data
+    import torchvision
+    import matplotlib.pyplot as plt
+    from matplotlib import cm
+    %matplotlib inline
+    import sklearn
+    import warnings
+    warnings.filterwarnings("ignore", category = FutureWarning)
+    import warnings
+    warnings.filterwarnings("ignore")
+    torch.manual_seed(1)
+    ```
+
+2. **Model Architecture**
+
+    In this model, 2 Convolutionl layers are made, followed by a MaxPooling Layer and the final layer has 10 units as there are 10 outputs.
+    ```py
+    class CNN(nn.Module):
+        def __init__(self):
+            super(CNN, self).__init__()
+            self.conv1 = nn.Sequential(
+                nn.Conv2d(
+                    in_channels=1,
+                    out_channels=16,
+                    kernel_size=5,
+                    stride=1,
+                    padding=2
+                ),
+                nn.ReLU(),
+                nn.MaxPool2d(kernel_size=2)
+            )
+            self.conv2 = nn.Sequential(
+                nn.Conv2d(16, 32, 5, 1, 2),
+                nn.ReLU(),
+                nn.MaxPool2d(2)
+            )
+            self.out = nn.Linear(32 * 7 * 7, 10)
+
+        def forward(self, inputs):
+            x = self.conv1(inputs)
+            x = self.conv2(x)
+            x = x.view(x.size(0), -1)
+            output = self.out(x)
+            return output, x
+
+    cnn = CNN()
+    optimizer = torch.optim.Adam(cnn.parameters(), lr = LR)
+    loss_func = nn.CrossEntropyLoss()
+    
+    ```
