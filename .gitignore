@@ -162,3 +162,4 @@ cython_debug/
 #.idea/
 
 2. Image Classification/data/*
+3. CNN Model/data/*
